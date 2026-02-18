@@ -1,3 +1,4 @@
+# sever_vosk.py
 #!/usr/bin/env python3
 """
 CPU-Compatible Realtime Transcription Server using Vosk

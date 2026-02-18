@@ -1,3 +1,4 @@
+# server.py
 #!/usr/bin/env python3
 """
 Voxtral Realtime Transcription Server
