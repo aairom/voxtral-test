@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxtral Realtime Speech Transcription</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎤 Voxtral Realtime Transcription</h1>
+            <p class="subtitle">Powered by Mistral AI Voxtral-Mini-4B-Realtime-2602</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Connection Settings -->
+            <div class="card settings-card">
+                <h2>⚙️ Connection Settings</h2>
+                <div class="form-group">
+                    <label for="serverHost">Server Host:</label>
+                    <input type="text" id="serverHost" value="127.0.0.1" placeholder="127.0.0.1">
+                </div>
+                <div class="form-group">
+                    <label for="serverPort">Server Port:</label>
+                    <input type="number" id="serverPort" value="8000" placeholder="8000">
+                </div>
+                <div class="form-group">
+                    <label for="modelName">Model:</label>
+                    <input type="text" id="modelName" value="mistralai/Voxtral-Mini-4B-Realtime-2602" readonly>
+                </div>
+            </div>
+
+            <!-- Audio Input Selection -->
+            <div class="card audio-card">
+                <h2>🎙️ Audio Input</h2>
+                <div class="form-group">
+                    <label for="audioSource">Select Audio Source:</label>
+                    <select id="audioSource">
+                        <option value="">Select microphone...</option>
+                    </select>
+                </div>
+                <div class="audio-visualizer">
+                    <canvas id="visualizer" width="600" height="100"></canvas>
+                </div>
+                <div class="audio-info">
+                    <span id="audioStatus">🔴 Not Recording</span>
+                    <span id="audioLevel">Level: 0%</span>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="card controls-card">
+                <h2>🎮 Controls</h2>
+                <div class="button-group">
+                    <button id="connectBtn" class="btn btn-primary">
+                        <span class="btn-icon">🔌</span> Connect to Server
+                    </button>
+                    <button id="startBtn" class="btn btn-success" disabled>
+                        <span class="btn-icon">▶️</span> Start Recording
+                    </button>
+                    <button id="stopBtn" class="btn btn-danger" disabled>
+                        <span class="btn-icon">⏹️</span> Stop Recording
+                    </button>
+                    <button id="clearBtn" class="btn btn-secondary">
+                        <span class="btn-icon">🗑️</span> Clear Transcript
+                    </button>
+                </div>
+                <div class="status-indicator">
+                    <span id="connectionStatus" class="status-badge status-disconnected">Disconnected</span>
+                    <span id="recordingStatus" class="status-badge status-idle">Idle</span>
+                </div>
+            </div>
+
+            <!-- Transcription Output -->
+            <div class="card transcript-card">
+                <h2>📝 Transcription</h2>
+                <div class="transcript-controls">
+                    <button id="copyBtn" class="btn btn-small">📋 Copy</button>
+                    <button id="downloadBtn" class="btn btn-small">💾 Download</button>
+                    <span id="wordCount">Words: 0</span>
+                </div>
+                <div id="transcriptOutput" class="transcript-output">
+                    <p class="placeholder">Transcription will appear here...</p>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="card stats-card">
+                <h2>📊 Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Duration:</span>
+                        <span id="duration" class="stat-value">00:00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Chunks Sent:</span>
+                        <span id="chunksSent" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Responses:</span>
+                        <span id="responsesReceived" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Latency:</span>
+                        <span id="latency" class="stat-value">0ms</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logs -->
+            <div class="card logs-card">
+                <h2>📋 System Logs</h2>
+                <div class="log-controls">
+                    <button id="clearLogsBtn" class="btn btn-small">Clear Logs</button>
+                    <label>
+                        <input type="checkbox" id="autoScrollLogs" checked>
+                        Auto-scroll
+                    </label>
+                </div>
+                <div id="logsOutput" class="logs-output"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built with ❤️ using Voxtral Mini 4B Realtime | <a href="https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602" target="_blank">Model Card</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
